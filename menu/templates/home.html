@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+      <!-- Required meta tags -->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+      <!-- Bootstrap CSS -->
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+            integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+      <title>Hello, world!</title>
+</head>
+
+<body>
+            <div class="container py-5">
+                  <div class="row">
+                        <div class="col-lg-10 mx-auto col-10 text-center mb-3">
+                              <h1 class="mt-0 text-primary">Our Menu</h1>
+                                          {{ form }}
+                              <p class="lead">Begin with a selection from our award winning beverage menu or choose a wine from our
+                                    extensive wine list. Our wine list features over 100 different vintages and has received the
+                                    chamber of commerce award of excellence.</p>
+                        </div>
+                        {% for menu in menus %}
+                              <div class="col-12 mt-4">
+                                    <h3 class="text-center">{{ menu.nome }}</h3>
+                                    <hr class="accent my-5">
+                              </div>
+                              <div class="row">
+                                    {% for item in menu.items %}
+                                    <div class="card mb-3 m-3" style="max-width: 540px;">
+                                          <div class="row g-0">
+                                                <div class="col-5 col-md-4">
+                                                      <img src="https://images.unsplash.com/photo-1499638673689-79a0b5115d87?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8ZHJpbmt8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60" class="img-fluid rounded-start" alt="...">
+                                                </div>
+                                                <div class="col-7 col-md-8">
+                                                      <div class="card-body">
+                                                            <h5 class="card-title">{{ item.nome }}</h5>
+                                                            {% for allergene in item.allergeni %}
+                                                                  <span class="badge badge-success mb-2">{{ allergene.tipo }}</span>
+                                                            {% endfor %}
+
+                                                            <p class="card-text">
+                                                                  {% if item.descrizione != ""%}
+                                                                        {{ item.descrizione }}
+                                                                  {% else %}
+                                                                        This is a wider card with supporting text below as a natural lead-in to
+                                                                        additional content. This content is a little bit longer.
+                                                                  {% endif %}
+                                                                 </p>
+                                                            <p class="card-text price"><medium class="text-muted">€{{ item.prezzo }}</medium>
+                                                            </p>
+                                                      </div>
+                                                </div>
+                                          </div>
+                                    </div>
+                                    {% endfor %}
+                              </div>
+                        {% endfor %}
+                  </div>
+            </div>
+
+
+      <!-- Optional JavaScript -->
+      <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+</body>
+</html>
+
+<style>
+      @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600&display=swap');
+
+      body{
+            font-family: 'Oswald', sans-serif;
+            background-color: #faf9ff;
+      }
+
+      .img-fluid {
+            border-radius: 30px;
+            object-fit: cover;
+            height: 100%;
+      }
+
+      .card{
+            border-radius: 30px;
+      }
+
+      .price{
+            font-weight: 800;
+      }
+</style>
